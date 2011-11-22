@@ -71,16 +71,12 @@ void test_parse_cfg(void)
 	CU_ASSERT_EQUAL(config_file_free(cfg), NULL);
 }
 
-int
-main(void)
+void
+make_cfg_suite(void)
 {
 	CU_pSuite suite;
-    CU_initialize_registry();
     suite = CU_add_suite("cfg_suite", NULL, NULL);
     CU_ADD_TEST(suite, wrong_path);
     CU_ADD_TEST(suite, wrong_data);
     CU_ADD_TEST(suite, test_parse_cfg);
-    CU_basic_run_tests();
-    CU_cleanup_registry();
-    return CU_get_error();
 }
