@@ -9,11 +9,12 @@ make
 
 Добавление собственных тестов в этот проект:
 Для этого придется установить и освоить git, но это не сложно)
-Вначале идите сюда:
+Для начала зарегистрируйтесь на этом сайте.
+Затем идите сюда:
 http://help.github.com/linux-set-up-git/
 И все настраиваете по инструкции
 Потом кликаете "fork" в этом репозитории
-Потом:
+Далее:
 cd адрес вашей папки с проектом
 git clone git@github.com:git@github.com:theWorldCreator/Cache-homework-unit-tests.git
 cd Cache-homework-unit-tests
