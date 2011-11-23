@@ -30,7 +30,7 @@ void direct_cache_through_typicall(void)
 	
 	mem = memory_create(cfg, "", info);
 	
-	cache = cache_create(cfg, "", info, mem);
+	cache = cache_create(cfg, "", info, mem, NULL);
 	CU_ASSERT_NOT_EQUAL(cache, NULL);
 	cache->ops->read(cache, 15, 1, cells);
 	
@@ -122,7 +122,7 @@ void direct_cache_back_typicall(void)
 	
 	mem = memory_create(cfg, "", info);
 	
-	cache = cache_create(cfg, "", info, mem);
+	cache = cache_create(cfg, "", info, mem, NULL);
 	CU_ASSERT_NOT_EQUAL(cache, NULL);
 	
 	cells[0].flags = 1;
