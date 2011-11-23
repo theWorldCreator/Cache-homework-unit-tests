@@ -2,6 +2,7 @@
 #include "test_parse_cfg.h"
 #include "test_statistics.h"
 #include "test_trace.h"
+#include "test_memory.h"
 
 #include <stdio.h>
 #include <unistd.h>
@@ -13,6 +14,7 @@ main(void)
     make_cfg_suite();
     make_statistics_suite();
     make_trace_suite();
+    make_memory_suite();
     CU_basic_run_tests();
     CU_cleanup_registry();
     return CU_get_error();
