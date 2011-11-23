@@ -25,7 +25,7 @@ http://help.github.com/linux-set-up-git/
 Потом кликаете "fork" в этом репозитории
 Далее:
 cd адрес вашей папки с проектом
-git clone git@github.com:theWorldCreator/Cache-homework-unit-tests.git
+git clone git@github.com:<Your_login_on_github>/Cache-homework-unit-tests.git
 cd Cache-homework-unit-tests
 git remote add upstream git://github.com/theWorldCreator/Cache-homework-unit-tests.git
 git fetch upstream
