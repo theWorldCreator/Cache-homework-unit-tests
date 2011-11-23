@@ -53,7 +53,7 @@ void memory_typicall(void)
 	cells[0].flags = 1;
 	cells[0].value = 0xFF;
 	cells[1].flags = 1;
-	cells[1].value = 0xFF - 2;
+	cells[1].value = 183;
 	cells[2].flags = 0;
 	mem->ops->write(mem, 1, 2, cells);
 	CU_ASSERT_EQUAL(info->clock_counter, 24);
@@ -61,7 +61,34 @@ void memory_typicall(void)
 	memset(cells, 0, sizeof(cells));
 	
 	mem->ops->read(mem, 1, 2, cells);
+	CU_ASSERT_EQUAL(cells[0].value, 0xFF);
+	CU_ASSERT_EQUAL(cells[0].flags, 1);
+	CU_ASSERT_EQUAL(cells[1].value, 183);
+	CU_ASSERT_EQUAL(cells[1].flags, 1);
+	CU_ASSERT_EQUAL(cells[2].flags, 0);
 	CU_ASSERT_EQUAL(info->clock_counter, 28);
+	
+	
+	
+	cells[0].flags = 1;
+	cells[0].value = 0;
+	cells[1].flags = 1;
+	cells[1].value = 73;
+	cells[2].flags = 0;
+	mem->ops->reveal(mem, 0, 2, cells);
+	CU_ASSERT_EQUAL(info->clock_counter, 28);
+	
+	memset(cells, 0, sizeof(cells));
+	
+	mem->ops->read(mem, 0, 4, cells);
+	CU_ASSERT_EQUAL(cells[0].value, 0);
+	CU_ASSERT_EQUAL(cells[0].flags, 1);
+	CU_ASSERT_EQUAL(cells[1].value, 73);
+	CU_ASSERT_EQUAL(cells[1].flags, 1);
+	CU_ASSERT_EQUAL(cells[2].value, 183);
+	CU_ASSERT_EQUAL(cells[2].flags, 1);
+	CU_ASSERT_EQUAL(cells[3].flags, 0);
+	CU_ASSERT_EQUAL(info->clock_counter, 32);
 	
 	
 	// FIXME: add tests
