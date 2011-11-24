@@ -35,8 +35,7 @@ void direct_cache_through_typicall(void)
 	cache->ops->read(cache, 15, 1, cells);
 	
 	CU_ASSERT_EQUAL(cells[0].flags, 0);
-	CU_ASSERT_EQUAL(info->clock_counter, 17); //FIXME: maybe 19??
-	//Should I consider cache write time here?
+	CU_ASSERT_EQUAL(info->clock_counter, 17);
 	CU_ASSERT_EQUAL(info->read_counter, 1);
 	
 	cells[0].flags = 1;
@@ -89,7 +88,7 @@ void direct_cache_through_typicall(void)
 	cells[0].flags = 1;
 	cells[0].value = 0xFF;
 	cache->ops->write(cache, 5, 2, cells);
-	CU_ASSERT_EQUAL(info->clock_counter, 91); //FIXME: again, maybe +2??
+	CU_ASSERT_EQUAL(info->clock_counter, 91);
 	
 	// FIXME: add more tests
 }
