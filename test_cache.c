@@ -135,7 +135,6 @@ void direct_cache_back_typicall(void)
 	CU_ASSERT_EQUAL(info->write_back_counter, 0);
 	
 	memset(cells, 0, sizeof(cells));
-	
 	cache->ops->read(cache, 1, 2, cells);
 	CU_ASSERT_EQUAL(cells[0].value, 0xFF);
 	CU_ASSERT_EQUAL(cells[0].flags, 1);
@@ -146,20 +145,38 @@ void direct_cache_back_typicall(void)
 	CU_ASSERT_EQUAL(info->read_counter, 1);
 	CU_ASSERT_EQUAL(info->hit_counter, 1);
 	
+	memset(cells, 0, sizeof(cells));
+	mem->ops->read(mem, 1, 2, cells);
+	CU_ASSERT_EQUAL(cells[0].flags, 0);
+	CU_ASSERT_EQUAL(cells[1].flags, 0);
+	CU_ASSERT_EQUAL(info->clock_counter, 23);
+	CU_ASSERT_EQUAL(info->read_counter, 1);
+	CU_ASSERT_EQUAL(info->hit_counter, 1);
+	
 	
 	cells[0].flags = 1;
 	cells[0].value = 5;
 	cache->ops->write(cache, 2048, 1, cells);
-	CU_ASSERT_EQUAL(info->clock_counter, 69);
+	CU_ASSERT_EQUAL(info->clock_counter, 73);
 	CU_ASSERT_EQUAL(info->write_counter, 2);
 	CU_ASSERT_EQUAL(info->hit_counter, 1);
 	CU_ASSERT_EQUAL(info->write_back_counter, 1);
+	
+	memset(cells, 0, sizeof(cells));
+	mem->ops->read(mem, 1, 2, cells);
+	CU_ASSERT_EQUAL(cells[0].value, 0xFF);
+	CU_ASSERT_EQUAL(cells[0].flags, 1);
+	CU_ASSERT_EQUAL(cells[1].value, 183);
+	CU_ASSERT_EQUAL(cells[1].flags, 1);
+	CU_ASSERT_EQUAL(info->clock_counter, 77);
+	CU_ASSERT_EQUAL(info->read_counter, 1);
+	CU_ASSERT_EQUAL(info->hit_counter, 1);
 	
 	cache->ops->read(cache, 0, 2, cells);
 	CU_ASSERT_EQUAL(cells[0].flags, 0);
 	CU_ASSERT_EQUAL(cells[1].value, 0xFF);
 	CU_ASSERT_EQUAL(cells[1].flags, 1);
-	CU_ASSERT_EQUAL(info->clock_counter, 118);
+	CU_ASSERT_EQUAL(info->clock_counter, 126);
 	CU_ASSERT_EQUAL(info->read_counter, 2);
 	CU_ASSERT_EQUAL(info->hit_counter, 1);
 	CU_ASSERT_EQUAL(info->write_back_counter, 2);

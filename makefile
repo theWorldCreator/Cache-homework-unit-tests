@@ -6,7 +6,7 @@ HFILES = test_parse_cfg.h test_statistics.h test_trace.h test_memory.h test_cach
 
 all : proj main
 
-main : main.c test_cache.o ../cache.o ../direct_cache.o test_memory.o ../memory.o test_trace.o ../trace.o test_statistics.o ../statistics.o test_parse_cfg.o ../parse_config.o ../common.o
+main : main.c test_cache.o ../cache.o ../direct_cache.o ../full_cache.o test_memory.o ../memory.o test_trace.o ../trace.o test_statistics.o ../statistics.o test_parse_cfg.o ../parse_config.o ../common.o
 	$(CC) $^ -o main $(CFLAGS)
 	
 deps.make : $(CFILES) $(HFILES)
