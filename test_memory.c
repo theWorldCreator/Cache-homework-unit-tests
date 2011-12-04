@@ -29,7 +29,7 @@ void memory_typicall(void)
 	
 	info = statistics_create(cfg);
 	
-	mem = memory_create(cfg, "", info);
+	mem = memory_create(cfg, NULL, info);
 	CU_ASSERT_NOT_EQUAL(mem, NULL);
 	
 	mem->ops->read(mem, 15, 1, cells);
