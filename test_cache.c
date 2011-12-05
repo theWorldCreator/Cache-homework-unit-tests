@@ -85,7 +85,7 @@ void direct_cache_wt_typicall(void)
 	cells[0].flags = 1;
 	cells[0].value = 0xFF;
 	cache->ops->write(cache, 5, 2, cells);
-	CU_ASSERT_EQUAL(info->clock_counter, 91);
+	CU_ASSERT_EQUAL(info->clock_counter, 73);
 	
 	// FIXME: add more tests
 	
